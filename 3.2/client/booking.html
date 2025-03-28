@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book a Slot</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .container {
+      flex: 1;
+      margin-top: 50px;
+      text-align: center;
+    }
+    .input-field input {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper teal">
+      <a href="index.html" class="brand-logo center">Book Slot</a>
+    </div>
+  </nav>
+  <div class="container">
+    <h5>Book a Charging Slot</h5>
+    <form id="bookingForm">
+      <div class="input-field">
+        <input type="text" id="stationName" required>
+        <label for="stationName">Station Name</label>
+      </div>
+      <div class="input-field">
+        <input type="datetime-local" id="bookingTime" required>
+        <label for="bookingTime">Select Date & Time</label>
+      </div>
+      <button class="btn waves-effect waves-light teal" type="submit">
+        <i class="material-icons left">check</i> Confirm Booking
+      </button>
+    </form>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.getElementById('bookingForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const stationName = document.getElementById('stationName').value.trim();
+      const bookingTime = document.getElementById('bookingTime').value;
+
+      if (stationName && bookingTime) {
+        // Redirect to payment page with booking details as URL parameters
+        const url = `payment.html?station=${encodeURIComponent(stationName)}&time=${encodeURIComponent(bookingTime)}`;
+        window.location.href = url;
+      } else {
+        M.toast({html: 'Please fill in all fields', classes: 'red'});
+      }
+    });
+  </script>
+</body>
+</html>
