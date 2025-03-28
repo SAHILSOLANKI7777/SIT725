@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper teal">
+      <a href="index.html" class="brand-logo center">Payment</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h5>Payment</h5>
+    <form id="paymentForm" action="#">
+      <div class="input-field">
+        <input type="number" id="cardNumber" placeholder="Card Number" required>
+      </div>
+      <div class="input-field">
+        <input type="text" id="expiryDate" placeholder="Expiry Date Month" required>
+      </div>
+      <div class="input-field">
+        <input type="number" id="cvv" placeholder="CVV" required>
+      </div>
+      <button class="btn teal" type="submit" id="paybutton">Pay Now</button>
+    </form>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.getElementById("paybutton").addEventListener("click", function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      let cardNumber = document.getElementById("cardNumber").value.trim();
+      let expiryDate = document.getElementById("expiryDate").value.trim();
+      let cvv = document.getElementById("cvv").value.trim();
+
+      if (cardNumber === "" || expiryDate === "" || cvv === "") {
+        M.toast({html: 'Please fill all details!', classes: 'red'});
+      } else {
+        M.toast({html: 'Payment Successful!', classes: 'green'});
+        //document.getElementById("paymentForm").reset(); // Clear form after success
+      }
+    });
+  </script>
+</body>
+</html>
